@@ -1,0 +1,10 @@
+services:
+  car-web:
+    build: .
+    image: car-website-api
+    container_name: car-web-container
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    restart: always
