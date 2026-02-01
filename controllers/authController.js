@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const { generateToken } = require('../utils/jwtUtils');
+const { sendWelcomeEmail } = require('../utils/emailService');
 const { HTTP_STATUS, ERROR_MESSAGES } = require('../config/constants');
 
 // Register User
@@ -30,6 +31,11 @@ const register = async (req, res, next) => {
 
     // Generate token
     const token = generateToken(user._id, user.role);
+
+    // Send welcome email (non-blocking - don't fail registration if email fails)
+    sendWelcomeEmail(email, username, firstName).catch((emailError) => {
+      console.error('Failed to send welcome email:', emailError.message);
+    });
 
     res.status(HTTP_STATUS.CREATED).json({
       success: true,
