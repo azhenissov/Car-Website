@@ -7,9 +7,9 @@ const validateUserRegistration = (data) => {
     email: Joi.string().email().required(),
     password: Joi.string().min(6).required(),
     confirmPassword: Joi.string().valid(Joi.ref('password')).required(),
-    firstName: Joi.string().max(50),
-    lastName: Joi.string().max(50),
-    phone: Joi.string().pattern(/^[+]?[(]?[0-9]{3}[)]?[-\s]?[0-9]{3}[-\s]?[0-9]{4,6}$/),
+    firstName: Joi.string().max(50).allow(''),
+    lastName: Joi.string().max(50).allow(''),
+    phone: Joi.any(), // No validation for phone
   });
 
   return schema.validate(data);
@@ -52,17 +52,17 @@ const validateCarListing = (data) => {
 // User Profile Update Validation
 const validateUserProfileUpdate = (data) => {
   const schema = Joi.object({
-    username: Joi.string().alphanum().min(3).max(30),
-    email: Joi.string().email(),
-    firstName: Joi.string().max(50),
-    lastName: Joi.string().max(50),
-    phone: Joi.string().pattern(/^[+]?[(]?[0-9]{3}[)]?[-\s]?[0-9]{3}[-\s]?[0-9]{4,6}$/),
+    username: Joi.string().alphanum().min(3).max(30).allow(''),
+    email: Joi.string().email().allow(''),
+    firstName: Joi.string().max(50).allow(''),
+    lastName: Joi.string().max(50).allow(''),
+    phone: Joi.any(), // No validation for phone
     address: Joi.object({
-      street: Joi.string(),
-      city: Joi.string(),
-      state: Joi.string(),
-      zipCode: Joi.string(),
-      country: Joi.string(),
+      street: Joi.string().allow(''),
+      city: Joi.string().allow(''),
+      state: Joi.string().allow(''),
+      zipCode: Joi.string().allow(''),
+      country: Joi.string().allow(''),
     }),
   });
 

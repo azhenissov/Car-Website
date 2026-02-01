@@ -1,0 +1,19 @@
+# Local Development Override
+# This file is automatically loaded by docker-compose and exposes ports directly
+# Add this file to .gitignore for production deployments
+
+services:
+  car-backend:
+    ports:
+      - "5000:5000"
+    labels: []
+
+  car-frontend:
+    ports:
+      - "3000:80"
+    labels: []
+
+networks:
+  traefik_default:
+    external: false
+    driver: bridge

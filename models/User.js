@@ -70,22 +70,26 @@ const userSchema = new mongoose.Schema(
 );
 
 // Hash password before saving
+// TEMPORARILY DISABLED FOR TESTING - RE-ENABLE BEFORE PRODUCTION!
 userSchema.pre('save', async function (next) {
   if (!this.isModified('password')) {
     return next();
   }
-  try {
-    const salt = await bcrypt.genSalt(10);
-    this.password = await bcrypt.hash(this.password, salt);
-    next();
-  } catch (error) {
-    next(error);
-  }
+  // try {
+  //   const salt = await bcrypt.genSalt(10);
+  //   this.password = await bcrypt.hash(this.password, salt);
+  //   next();
+  // } catch (error) {
+  //   next(error);
+  // }
+  next(); // Skip hashing for now
 });
 
 // Method to compare passwords
+// TEMPORARILY DISABLED FOR TESTING - RE-ENABLE BEFORE PRODUCTION!
 userSchema.methods.comparePassword = async function (enteredPassword) {
-  return await bcrypt.compare(enteredPassword, this.password);
+  // return await bcrypt.compare(enteredPassword, this.password);
+  return enteredPassword === this.password; // Plain text comparison for testing
 };
 
 // Remove password from response

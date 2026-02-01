@@ -1,10 +1,40 @@
 services:
-  car-web:
+  # Backend API Service
+  car-backend:
     build: .
     image: car-website-api
-    container_name: car-web-container
-    ports:
-      - "5000:5000"
+    container_name: car-backend
     env_file:
       - .env
     restart: always
+    networks:
+      - internal
+      - traefik_default
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.car-backend.rule=Host(`car-nurashi.abzy.kz`) && PathPrefix(`/api`)"
+      - "traefik.http.routers.car-backend.entrypoints=web"
+      - "traefik.http.services.car-backend.loadbalancer.server.port=5000"
+      - "traefik.docker.network=traefik_default"
+
+  # Frontend Service
+  car-frontend:
+    build: ./frontend
+    image: car-website-frontend
+    container_name: car-frontend
+    restart: always
+    networks:
+      - internal
+      - traefik_default
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.car-frontend.rule=Host(`car-nurashi.abzy.kz`) && !PathPrefix(`/api`)"
+      - "traefik.http.routers.car-frontend.entrypoints=web"
+      - "traefik.http.services.car-frontend.loadbalancer.server.port=80"
+      - "traefik.docker.network=traefik_default"
+
+networks:
+  internal:
+    driver: bridge
+  traefik_default:
+    external: true
