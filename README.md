@@ -39,6 +39,12 @@ A modern, scalable Node.js/Express backend for a car marketplace/rental platform
 -  Rating and review system ready
 -  Password encryption and verification
 
+### Account Creation
+![image alt](https://github.com/azhenissov/Car-Website/blob/main/Account%20creation.jpg?raw=true)
+
+### Sign in
+![image alt](https://github.com/azhenissov/Car-Website/blob/main/Sign%20in.jpg?raw=true)
+
 ### Main Page
 ![image alt](https://raw.githubusercontent.com/azhenissov/Car-Website/32aa0ad4d64626441a3c047817aa28d564a88db7/home%20page.jpg)
 
