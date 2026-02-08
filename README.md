@@ -39,6 +39,18 @@ A modern, scalable Node.js/Express backend for a car marketplace/rental platform
 -  Rating and review system ready
 -  Password encryption and verification
 
+### Main Page
+
+
+### Car Explore
+
+
+### Car Listing Management
+
+
+### About us
+
+
 ## Architecture
 
 ```
