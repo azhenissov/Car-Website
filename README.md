@@ -43,12 +43,14 @@ A modern, scalable Node.js/Express backend for a car marketplace/rental platform
 ![image alt](https://raw.githubusercontent.com/azhenissov/Car-Website/32aa0ad4d64626441a3c047817aa28d564a88db7/home%20page.jpg)
 
 ### Car Explore
-
+![image alt](https://github.com/azhenissov/Car-Website/blob/main/car%20explore.jpg?raw=true)
 
 ### Car Listing Management
+![image alt]()
 
 
 ### About us
+![image alt]()
 
 
 ## Architecture
