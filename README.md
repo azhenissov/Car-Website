@@ -50,7 +50,7 @@ A modern, scalable Node.js/Express backend for a car marketplace/rental platform
 
 
 ### About us
-![image alt]()
+![image alt](https://github.com/azhenissov/Car-Website/blob/main/about%20us.jpg?raw=true)
 
 
 ## Architecture
