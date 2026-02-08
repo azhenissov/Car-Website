@@ -2,7 +2,7 @@
 
 A modern, scalable Node.js/Express backend for a car marketplace/rental platform with user authentication, car listing management, and advanced features like role-based access control and email notifications.
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Features](#features)
 - [Architecture](#architecture)
@@ -16,30 +16,30 @@ A modern, scalable Node.js/Express backend for a car marketplace/rental platform
 - [Deployment](#deployment)
 - [Advanced Features](#advanced-features)
 
-## ✨ Features
+## Features
 
 ### Core Features
-- ✅ User authentication with JWT tokens
-- ✅ Secure password hashing with bcrypt
-- ✅ Role-based access control (Admin, User, Premium User, Moderator)
-- ✅ Car listing CRUD operations
-- ✅ Advanced search and filtering
-- ✅ User profile management
-- ✅ Input validation with Joi
-- ✅ Comprehensive error handling
-- ✅ Security headers with Helmet
-- ✅ CORS enabled
+-  User authentication with JWT tokens
+-  Secure password hashing with bcrypt
+-  Role-based access control (Admin, User, Premium User, Moderator)
+-  Car listing CRUD operations
+-  Advanced search and filtering
+-  User profile management
+-  Input validation with Joi
+-  Comprehensive error handling
+-  Security headers with Helmet
+-  CORS enabled
 
 ### Advanced Features
-- 🔧 Email notifications with Nodemailer
-- 👥 Role-based authorization
-- 📊 Pagination support
-- 🔍 Full-text search capabilities
-- 📈 View tracking for listings
-- ⭐ Rating and review system ready
-- 🛡️ Password encryption and verification
+-  Email notifications with Nodemailer
+-  Role-based authorization
+-  Pagination support
+-  Full-text search capabilities
+-  View tracking for listings
+-  Rating and review system ready
+-  Password encryption and verification
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 car-website/
@@ -71,13 +71,13 @@ car-website/
 └── server.js               # Main server file
 ```
 
-## 📦 Prerequisites
+##  Prerequisites
 
 - Node.js v14+ or higher
 - MongoDB 4.4+ (local or cloud)
 - npm or yarn
 
-## 🚀 Installation
+## Installation
 
 ### 1. Clone the Repository
 ```bash
@@ -144,7 +144,7 @@ The server should run on `http://localhost:5000`
 | `EMAIL_PORT` | SMTP port | 2525 |
 | `CORS_ORIGIN` | Allowed origin | * |
 
-## 📚 API Documentation
+## API Documentation
 
 ### Base URL
 ```
@@ -464,7 +464,7 @@ Authorization: Bearer <token>
 }
 ```
 
-## 📊 Database Models
+## Database Models
 
 ### User Schema
 ```javascript
@@ -520,7 +520,7 @@ Authorization: Bearer <token>
 }
 ```
 
-## 🔐 Authentication
+## Authentication
 
 ### JWT Flow
 
@@ -541,7 +541,7 @@ Signature: HMACSHA256(Header.Payload, SECRET)
 - Never stored in plain text
 - Compared securely during login
 
-## ❌ Error Handling
+## Error Handling
 
 All errors follow a consistent format:
 
@@ -568,7 +568,7 @@ All errors follow a consistent format:
 - `409` - Conflict (duplicate email/username)
 - `500` - Internal Server Error
 
-## 🚢 Deployment
+## Deployment
 
 ### Deploy to Render
 
@@ -593,7 +593,7 @@ All errors follow a consistent format:
 3. Run `npm install && npm start`
 4. Share the URL
 
-## 🎯 Advanced Features
+## Advanced Features
 
 ### 1. Role-Based Access Control (RBAC)
 
@@ -617,7 +617,7 @@ const { sendVerificationEmail } = require('../utils/emailService');
 await sendVerificationEmail(email, username, verificationLink);
 ```
 
-## 📝 Sample .env Configuration
+## Sample .env Configuration
 
 ```env
 PORT=5000
@@ -639,7 +639,7 @@ ADMIN_EMAIL=admin@carwebsite.com
 ADMIN_PASSWORD=admin_password_change_in_production
 ```
 
-## 🧪 Testing Endpoints
+## Testing Endpoints
 
 Use tools like Postman or Thunder Client to test:
 
@@ -651,7 +651,7 @@ Use tools like Postman or Thunder Client to test:
 6. **Update Car**: `PUT /api/cars/:id` with token
 7. **Delete Car**: `DELETE /api/cars/:id` with token
 
-## 📖 Next Steps
+## Next Steps
 
 - [ ] Add email verification on signup
 - [ ] Implement password reset functionality
@@ -663,7 +663,7 @@ Use tools like Postman or Thunder Client to test:
 - [ ] Write unit and integration tests
 - [ ] Setup CI/CD pipeline
 
-## 📄 License
+## License
 
 ISC
 
