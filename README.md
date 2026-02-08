@@ -14,6 +14,9 @@ A modern, scalable Node.js/Express backend for a car marketplace/rental platform
 - [Authentication](#authentication)
 - [Error Handling](#error-handling)
 - [Deployment](#deployment)
+- [Frontend](#frontend)
+- [Development](#development)
+- [Contributing](#contributing)
 - [Advanced Features](#advanced-features)
 
 ## Features
@@ -613,6 +616,181 @@ All errors follow a consistent format:
 3. Run `npm install && npm start`
 4. Share the URL
 
+## Frontend
+
+The project includes a frontend client located in the `/frontend` directory with the following features:
+
+### Frontend Architecture
+```
+frontend/
+├── index.html          # Main HTML structure
+├── styles.css          # CSS styling
+├── app.js             # Client-side JavaScript
+├── nginx.conf         # Nginx configuration for production
+└── Dockerfile         # Docker containerization
+```
+
+### Frontend Features
+- **Responsive Design**: Mobile-friendly interface
+- **User Authentication**: Login and registration forms
+- **Car Listings**: Browse, search, and filter car listings
+- **User Dashboard**: Profile management and listing control
+- **Real-time Updates**: Live data from backend API
+
+### Frontend Screenshots
+
+#### Account Creation
+![Account Creation](https://github.com/azhenissov/Car-Website/blob/main/Account%20creation.jpg?raw=true)
+
+#### Sign In
+![Sign In](https://github.com/azhenissov/Car-Website/blob/main/Sign%20in.jpg?raw=true)
+
+#### Main Page
+![Main Page](https://raw.githubusercontent.com/azhenissov/Car-Website/32aa0ad4d64626441a3c047817aa28d564a88db7/home%20page.jpg)
+
+#### Car Explore
+![Car Explore](https://github.com/azhenissov/Car-Website/blob/main/car%20explore.jpg?raw=true)
+
+#### Car Listing Management
+![Car Listing Management](https://github.com/azhenissov/Car-Website/blob/main/car%20listing%20management.jpg?raw=true)
+
+#### About Us
+![About Us](https://github.com/azhenissov/Car-Website/blob/main/about%20us.jpg?raw=true)
+
+## Development
+
+### Development Setup
+
+1. **Backend Development**
+   ```bash
+   # Install dependencies
+   npm install
+   
+   # Start development server with auto-reload
+   npm run dev
+   ```
+
+2. **Frontend Development**
+   ```bash
+   # Serve frontend files
+   cd frontend
+   python -m http.server 3000  # or use any static file server
+   ```
+
+3. **Database Setup for Development**
+   ```bash
+   # Using MongoDB Atlas (recommended)
+   # Or local MongoDB
+   mongod --dbpath /data/db
+   ```
+
+### Development Tools
+
+- **ESLint**: Code linting and formatting
+- **Nodemon**: Auto-restart server on changes
+- **Postman**: API testing and documentation
+- **Docker**: Containerization for consistent environments
+
+### Project Structure
+
+```
+car-website/
+├── config/                  # Configuration files
+│   ├── constants.js        # App constants and enums
+│   └── database.js         # MongoDB connection
+├── controllers/             # Business logic
+│   ├── authController.js   # Auth endpoints
+│   ├── userController.js   # User management
+│   └── carController.js    # Car listing management
+├── middleware/              # Custom middleware
+│   ├── authMiddleware.js   # JWT verification & RBAC
+│   ├── errorMiddleware.js  # Global error handler
+│   └── validationMiddleware.js # Input validation
+├── models/                  # MongoDB schemas
+│   ├── User.js             # User schema
+│   └── Car.js              # Car listing schema
+├── routes/                  # API endpoints
+│   ├── authRoutes.js       # Auth endpoints
+│   ├── userRoutes.js       # User endpoints
+│   └── carRoutes.js        # Car endpoints
+├── utils/                   # Utility functions
+│   ├── emailService.js     # Email functionality
+│   ├── jwtUtils.js         # JWT utilities
+│   └── validators.js       # Joi validation schemas
+├── frontend/                # Client-side code
+│   ├── index.html          # Main HTML structure
+│   ├── styles.css          # CSS styling
+│   ├── app.js             # Client-side JavaScript
+│   ├── nginx.conf         # Nginx configuration
+│   └── Dockerfile         # Frontend containerization
+├── docs/                    # Documentation
+│   └── project-report.md   # Project documentation
+├── .env.example            # Environment variables template
+├── .gitignore              # Git ignore rules
+├── package.json            # Dependencies
+├── docker-compose.yml      # Docker orchestration
+├── Dockerfile              # Backend containerization
+└── server.js               # Main server file
+```
+
+### API Testing
+
+Use the provided Postman collection or test manually:
+
+```bash
+# Test authentication
+curl -X POST http://localhost:5000/api/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{"username":"testuser","email":"test@example.com","password":"password123","confirmPassword":"password123"}'
+
+# Test car listing
+curl -X GET http://localhost:5000/api/cars
+```
+
+## Contributing
+
+### Getting Started
+
+1. **Fork the repository**
+2. **Clone your fork**
+   ```bash
+   git clone https://github.com/your-username/Car-Website.git
+   cd Car-Website
+   ```
+3. **Create a feature branch**
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+4. **Make your changes and commit**
+   ```bash
+   git add .
+   git commit -m "Add your feature description"
+   ```
+5. **Push to your fork and create a pull request**
+
+### Code Style
+
+- Follow ESLint configuration
+- Use meaningful variable names
+- Add comments for complex logic
+- Write tests for new features
+- Update documentation for API changes
+
+### Development Workflow
+
+1. **Feature Development**: Create feature branches from `main`
+2. **Code Review**: All changes require pull request review
+3. **Testing**: Ensure all tests pass before merging
+4. **Documentation**: Update README and API docs for new features
+
+### Issue Reporting
+
+When reporting issues, please include:
+- **Environment details** (Node.js version, OS, etc.)
+- **Steps to reproduce** the issue
+- **Expected vs actual behavior**
+- **Error messages** and stack traces if applicable
+
 ## Advanced Features
 
 ### 1. Role-Based Access Control (RBAC)
@@ -636,6 +814,28 @@ Configured with Nodemailer (supports Gmail, Mailtrap, SendGrid, etc.)
 const { sendVerificationEmail } = require('../utils/emailService');
 await sendVerificationEmail(email, username, verificationLink);
 ```
+
+### 3. Docker Support
+
+The project includes Docker support for easy deployment:
+
+```bash
+# Build and run with Docker Compose
+docker-compose up -d
+
+# Build individual services
+docker build -f Dockerfile -t car-website-backend .
+docker build -f frontend/Dockerfile -t car-website-frontend .
+```
+
+### 4. Security Features
+
+- **Helmet.js**: Security headers
+- **CORS**: Cross-origin resource sharing
+- **Input Validation**: Joi schema validation
+- **Password Hashing**: bcrypt with salt rounds
+- **JWT Authentication**: Secure token-based auth
+- **Rate Limiting**: Protection against abuse
 
 ## Sample .env Configuration
 
